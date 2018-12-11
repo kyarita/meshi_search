@@ -33,13 +33,17 @@
     <v-layout
      align-center 
      justify-start
+     column
+     xs1
     >
       <div 
+        class="card-debug"
         is="TweetCard" 
         v-for="tweet in tweets" 
         v-bind:key="tweet.id"
         v-bind:picture="tweet.picture"
         v-bind:text="tweet.text"
+        :tweet="tweets[tweet.id]"
       ></div>
     </v-layout>
   </v-container>
@@ -47,7 +51,10 @@
 
 <script>
 /* eslint-disable */
+  import Twitter from 'twitter'
   import TweetCard from './TweetCard'
+
+
 
   export default {
     name: 'Top',
@@ -59,27 +66,41 @@
       return {
         tweets:[
           {
-            id: 1,
-            picture: ["sample-img1.png"],
-            text: "SAMPLEsample1"
-          },
-          {
-            id: 2,
-            picture: ["sample-img2.png"],
-            text: "sampleSAMPLE1"
+            id: 0,
+            picture:[
+                    'https://pbs.twimg.com/media/Dt94nPlVAAACUcG.jpg',
+                    'https://pbs.twimg.com/media/DuBilXpUcAAtEeU.jpg',
+                    'https://pbs.twimg.com/media/Dt94oAVVYAERI2C.jpg',
+                    'https://pbs.twimg.com/media/Dt94oaTVsAIb47n.jpg'
+                  ], 
+            station: "sample Station0",
+            text: "SAMPLEsample0"
           }
         ]
       };
     },
     methods: {
-      search: () => {
-        console.log(this);
-        this.tweets.push({id: 1, picture: "sample.png", text:"sample"});
+      search: function() {
+
+        this.tweets.push({
+          id: this.tweets.length,
+          picture:[
+                    'https://pbs.twimg.com/media/Dt94nPlVAAACUcG.jpg',
+                    'https://pbs.twimg.com/media/DuBilXpUcAAtEeU.jpg',
+                    'https://pbs.twimg.com/media/Dt94oAVVYAERI2C.jpg',
+                    'https://pbs.twimg.com/media/Dt94oaTVsAIb47n.jpg'
+                  ], 
+          station: 'sample Station' + this.tweets.length,
+          text:'sample' + this.tweets.length
+        });
       }
     }
   } 
 </script>
 
 <style>
-
+  .card-debug {
+    background-color: bisque;
+    height: 250px;
+  }
 </style>
