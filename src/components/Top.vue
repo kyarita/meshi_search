@@ -51,10 +51,7 @@
 
 <script>
 /* eslint-disable */
-  import Twitter from 'twitter'
   import TweetCard from './TweetCard'
-
-
 
   export default {
     name: 'Top',
@@ -64,7 +61,7 @@
     props:[],
     data() {
       return {
-        tweets:[
+        tweets:[ //dummy data
           {
             id: 0,
             picture:[
@@ -74,12 +71,12 @@
                     'https://pbs.twimg.com/media/Dt94oaTVsAIb47n.jpg'
                   ], 
             station: "sample Station0",
-            text: "SAMPLEsample0"
+            text: "sample0"
           }
         ]
       };
     },
-    methods: {
+    methods: { //dummy data
       search: function() {
 
         this.tweets.push({
@@ -101,6 +98,6 @@
 <style>
   .card-debug {
     background-color: bisque;
-    height: 250px;
+    height: 300px;
   }
 </style>
