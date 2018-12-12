@@ -41,8 +41,7 @@
         is="TweetCard" 
         v-for="tweet in tweets" 
         v-bind:key="tweet.id"
-        v-bind:picture="tweet.picture"
-        v-bind:text="tweet.text"
+  
         :tweet="tweets[tweet.id]"
       ></div>
     </v-layout>

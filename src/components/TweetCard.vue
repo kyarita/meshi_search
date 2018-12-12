@@ -21,7 +21,7 @@
                 </v-card-text>
               </v-flex>
 
-              <v-layout wrap>
+              <v-layout wrap class="picture">
                 <v-flex v-for="n in 4" :key="n" xs6>
                   <a :href=tweet.picture[n-1]>
                     <v-img
