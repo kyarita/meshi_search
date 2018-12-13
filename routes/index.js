@@ -1,9 +1,8 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  const result = searchTweet('新宿', prepareTweet());
+router.get('/search/:word', function(req, res, next) {
+  const result = searchTweet(req.params.word, prepareTweet());
   console.log(result);
   res.render('index', { title: 'Express' });
 });

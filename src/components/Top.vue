@@ -22,7 +22,7 @@
         id="search"
       >
         <v-text-field
-          v-on:change="search"
+          v-on:change="search('word')"
           label="search"
           placeholder="ツイート内容で検索"
           append-icon="search"
@@ -50,6 +50,7 @@
 
 <script>
 /* eslint-disable */
+  import axios from 'axios'
   import TweetCard from './TweetCard'
 
   export default {
@@ -76,8 +77,17 @@
       };
     },
     methods: { //dummy data
-      search: function() {
-
+      search: function(word) {
+        console.log(word);
+        const api = axios.create({
+            headers: {'Access-Control-Allow-Origin': '*'}
+        })
+        axios 
+          .get('http://localhost:3000/search/' + word, {'Access-Control-Allow-Origin': '*'})
+          .then( function(response) {
+            console.log(response);
+            this.tweets.push(response);
+          })
         this.tweets.push({
           id: this.tweets.length,
           picture:[
