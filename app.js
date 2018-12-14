@@ -18,7 +18,11 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 const twitClient = new Twitter({
 });
+app.get('/', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  console.log("myamaymayamya")
 
+});
 app.get('/search/:word', function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   twitClient.get('statuses/user_timeline', {screen_name : "muni_gurume", count : 1000}, (error, data, response) => {
@@ -30,11 +34,8 @@ app.get('/search/:word', function(req, res, next) {
       res.end();
       return ;
     }
-    console.log("=================")
-    console.log(data);
-    console.log("==================");
     data.forEach( content => {
-      //駅名を切り出して配列にpush
+      //駅名を切り出して配列にいれる
       const station = content.text.slice(content.text.indexOf('：'), content.text.indexOf('駅'));
       if (station === word) {
         tweets.push({station: station, text: content.text, urls: content.entities.urls});
@@ -62,9 +63,4 @@ app.use(function(err, req, res, next) {
   res.send(err.message);
 });
 
-//検索するツイートを整形
-async function searchTweet(word) {
-  let tweets = [];
-  
-}
 module.exports = app;
